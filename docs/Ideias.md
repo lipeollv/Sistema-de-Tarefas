@@ -1,11 +1,23 @@
 Classe tarefas  
-- nome
-- importancia
-- horário
-- concluida (true/false)
+- nome String
+- importancia enum
+- horário LocalTime
+- concluida (true/false) boolean
+- categoria String
 
-Classe ListadeTarefas
-- guardar tarefas
-- adicionar tarefa
-- excluir tarefa
-- listar
+Métodos
+- tarefaConcluida (alterar a tarefa para concluida)
+- alterarNome (mudar nome da tarefa)
+- alterarImportancia (mudar a importancia da tarefa)
+- alterarHorario (mudar horario da tarefa)
+- obterResumo (mostrar o resumo das minhas tarefas (semanal))
+
+
+
+
+
+
+o programa irá funcionar como uma espécie de controlador de tarefas, aonde você conseguirá filtrar as tarefas nos dias específicos e ver quais tarefas estão pendentes para esse dia e você conseguir marcar quais tarefas você já completou.
+
+primeiro preciso declarar todos os atributos necessários para os objetos, criar métodos importantes para a acessibilidade do usuário (eu). a ideia vai começar com: criar um método simples que ira sempre pegar um resumo das tarefas com os atributos especificados delas (nome, horário, etc...), a próxima ideia é salvar todas essas informações em dias específicos para o programa ficar mais encapsulado e organizado.
+
