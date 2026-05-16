@@ -75,16 +75,28 @@ public class SistemaDeTarefas { // criando uma classe
                  f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12)); // salvando todas as terefas dentro de uma lista array com nome de "listaDeTarefas"
          
         Scanner input = new Scanner(System.in); // variável para salvar o que o usuário escrever
-        System.out.println("Digite um dia da Semana para obter a rotina (SEGUNDA, TERÇA, QUARTA, QUINTA OU SEXTA): "); // input para perguntar para o usuário o dia da semana
-        String resposta = input.nextLine(); // variável para salvar a resposta do usuário
-
-        Tarefa.DiaDaSemana diaEscolhido = Tarefa.DiaDaSemana.valueOf(resposta.toUpperCase()); // transformar a resposta do usuário em enum para comparar no if
         
-        for (Tarefa t : listaDeTarefas) { // iniciar um loop que só pertente a classe "Tarefa" chamado "t" que percorre toda a listaDeTarefas
-            if ( t.getDiaDaSemana() == diaEscolhido) { // se o dia da semana for igual a resposta
-                System.out.println(t.obterResumo()); // imprime o resumo do dia da semana
-            }
-        }
+        
+        boolean entradaValida = false;
+        
+        while (!entradaValida) {
+            try {
+                System.out.println("Digite um dia da Semana para obter a rotina (SEGUNDA, TERÇA, QUARTA, QUINTA OU SEXTA): "); // input para perguntar para o usuário o dia da semana
+                String resposta = input.nextLine(); // variável para salvar a resposta do usuário
+                Tarefa.DiaDaSemana diaEscolhido = Tarefa.DiaDaSemana.valueOf(resposta.toUpperCase()); // transformar a resposta do usuário em enum para comparar no if
+                
+                for (Tarefa t : listaDeTarefas) { // iniciar um loop que só pertente a classe "Tarefa" chamado "t" que percorre toda a listaDeTarefas
+                    if ( t.getDiaDaSemana() == diaEscolhido) { // se o dia da semana for igual a resposta
+                         System.out.println(t.obterResumo()); // imprime o resumo do dia da semana
+                     
+                             } 
+                        } 
+                    entradaValida = true;
+                
+               } catch (IllegalArgumentException e) {
+                        System.out.println("Erro! digite um dia da semana valido.");
+                    }
+        }   
     }
-    
 }
+    
