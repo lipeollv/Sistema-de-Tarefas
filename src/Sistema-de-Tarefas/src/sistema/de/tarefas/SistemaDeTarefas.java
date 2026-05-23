@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 
 public class SistemaDeTarefas { // criando uma classe 
+    public static ArrayList<Tarefa> listaDeTarefas;
 
     public static void main(String[] args) { // criando um método sem retorno (void).
         Tarefa s1 = new Tarefa( Tarefa.DiaDaSemana.SEGUNDA,"Acordar", Tarefa.Importancia.ALTA, LocalTime.of(7, 0), "Rotina"); // criando um novo objeto e colocando as informações desse novo objeto conforme o contrutor.
@@ -71,32 +72,11 @@ public class SistemaDeTarefas { // criando uma classe
         Tarefa f12 = new Tarefa(Tarefa.DiaDaSemana.SEXTA, "Dormir", Tarefa.Importancia.ALTA, LocalTime.of(23, 30),  "Rotina");
 
                 
-         ArrayList<Tarefa> listaDeTarefas = new ArrayList(Arrays.asList(s1, s2, s3 , s4, s5, s6, s7, s8, s9, s10, s11, s12, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, i1, i2, i3, i4, i5, i6, i7, i8, i9, i10, i11, i12,
-                 f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12)); // salvando todas as terefas dentro de uma lista array com nome de "listaDeTarefas"
+         listaDeTarefas = new ArrayList(Arrays.asList(s1, s2, s3 , s4, s5, s6, s7, s8, s9, s10, s11, s12, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, i1, i2, i3, i4, i5, i6, i7, i8, i9, i10, i11, i12,
+            f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12)); // salvando todas as terefas dentro de uma lista array com nome de "listaDeTarefas"   
          
-        Scanner input = new Scanner(System.in); // variável para salvar o que o usuário escrever
-        
-        
-        boolean entradaValida = false;
-        
-        while (!entradaValida) {
-            try {
-                System.out.println("Digite um dia da Semana para obter a rotina (SEGUNDA, TERÇA, QUARTA, QUINTA OU SEXTA): "); // input para perguntar para o usuário o dia da semana
-                String resposta = input.nextLine(); // variável para salvar a resposta do usuário
-                Tarefa.DiaDaSemana diaEscolhido = Tarefa.DiaDaSemana.valueOf(resposta.toUpperCase()); // transformar a resposta do usuário em enum para comparar no if
-                
-                for (Tarefa t : listaDeTarefas) { // iniciar um loop que só pertente a classe "Tarefa" chamado "t" que percorre toda a listaDeTarefas
-                    if ( t.getDiaDaSemana() == diaEscolhido) { // se o dia da semana for igual a resposta
-                         System.out.println(t.obterResumo()); // imprime o resumo do dia da semana
-                     
-                             } 
-                        } 
-                    entradaValida = true;
-                
-               } catch (IllegalArgumentException e) {
-                        System.out.println("Erro! digite um dia da semana valido.");
-                    }
-        }   
+        App.launch(App.class, args);
     }
+
 }
     
