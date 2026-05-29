@@ -11,19 +11,3 @@ try-catch para se o usuário digitar algo além de um dia da semana, ele diz que
 
 
 
-
-## CONSTRUÇÃO
-Classe tarefas  
-- nome String
-- importancia enum
-- horário LocalTime
-- concluida (true/false) boolean
-- categoria String
-
-Métodos
-- tarefaConcluida (alterar a tarefa para concluida)
-- alterarNome (mudar nome da tarefa)
-- alterarImportancia (mudar a importancia da tarefa)
-- alterarHorario (mudar horario da tarefa)
-- obterResumo (mostrar o resumo das minhas tarefas (semanal))
-
