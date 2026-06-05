@@ -1,4 +1,4 @@
-# Sistema de Gerenciamento de Tarefas 📝
+# Sistema de Gerenciamento de Tarefas 
 
 Um controlador de tarefas robusto desenvolvido em Java para organizar a rotina diária. O projeto foi estruturado com foco na aplicação prática dos fundamentos de Programação Orientada a Objetos (POO), manipulação de coleções e tratamento de erros.
 
