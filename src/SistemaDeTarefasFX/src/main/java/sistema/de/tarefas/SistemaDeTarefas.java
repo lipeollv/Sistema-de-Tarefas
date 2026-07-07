@@ -19,7 +19,7 @@ public class SistemaDeTarefas { // criando uma classe
                 "Contestar Petição",
                 "TJAM",
                 Tarefa.Situacao.PENDENTE,
-                "Cível"
+                "Cível",
                 "Gabi"
 
         );
