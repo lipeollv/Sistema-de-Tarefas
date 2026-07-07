@@ -3,7 +3,7 @@ name: Build and Release Multiplatform
 on:
   push:
     tags:
-      - 'v*' # Vai rodar sempre que você criar uma tag tipo v1.0.0
+      - 'v*'
 
 jobs:
   build:
@@ -40,6 +40,8 @@ jobs:
   release:
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # <-- Essa linha dá a permissão necessária para criar a Release!
     steps:
     - name: Baixar todos os artefatos
       uses: actions/download-artifact@v4
