@@ -44,7 +44,7 @@ public class Tarefa {
         this.situacao = situacao;
         this.categoria = categoria;
         this.advogado = advogado;
-        this.anotacoes = anotacoes;
+        this.anotacoes = "";
     }
 
     // Getters

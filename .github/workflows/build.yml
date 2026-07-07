@@ -24,8 +24,8 @@ jobs:
         distribution: 'temurin'
         cache: 'maven'
 
-    - name: Compilar Projeto com Maven
-      run: mvn org.apache.maven.plugins:maven-compiler-plugin:3.13.0:compile clean package
+    - name: Compilar e Empacotar com Maven
+      run: mvn clean package
       working-directory: src/SistemaDeTarefasFX
 
     - name: Gerar Pacote Nativo com jpackage
