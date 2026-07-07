@@ -20,6 +20,7 @@ public class SistemaDeTarefas { // criando uma classe
                 "TJAM",
                 Tarefa.Situacao.PENDENTE,
                 "Cível"
+                "Gabi"
 
         );
 
