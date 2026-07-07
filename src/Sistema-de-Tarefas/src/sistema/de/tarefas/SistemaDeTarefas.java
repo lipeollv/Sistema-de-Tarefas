@@ -76,6 +76,8 @@ public class SistemaDeTarefas { // criando uma classe
             f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12)); // salvando todas as terefas dentro de uma lista array com nome de "listaDeTarefas"   
          
         App.launch(App.class, args);
+
+        System.out.println("oi");
     }
 
 }
