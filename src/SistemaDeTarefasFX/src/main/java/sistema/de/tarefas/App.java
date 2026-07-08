@@ -230,25 +230,33 @@ public class App extends Application {
     }
 
     private void carregarDoArquivo() {
-        java.io.File arquivo = new java.io.File("processos_salvos.txt");
+        String caminho = System.getProperty("user.home")
+                + java.io.File.separator
+                + "SistemaDeTarefas"
+                + java.io.File.separator
+                + "processos_salvos.txt";
+
+        java.io.File arquivo = new java.io.File(caminho);
 
         if (!arquivo.exists()) {
             SistemaDeTarefas.inicializarTarefas();
             dados = javafx.collections.FXCollections.observableArrayList(SistemaDeTarefas.listaDeTarefas);
             return;
         }
-
         dados = javafx.collections.FXCollections.observableArrayList();
+
         try (java.io.BufferedReader reader = new java.io.BufferedReader(new java.io.FileReader(arquivo))) {
             String linha;
+
             while ((linha = reader.readLine()) != null) {
                 String[] partes = java.util.regex.Pattern.compile("\\|").split(linha);
+
                 if (partes.length >= 10) {
                     Tarefa t = new Tarefa(
                             partes[0],
                             partes[1],
-                            LocalDate.parse(partes[2]),
-                            LocalDate.parse(partes[3]),
+                            java.time.LocalDate.parse(partes[2]),
+                            java.time.LocalDate.parse(partes[3]),
                             Integer.parseInt(partes[4]),
                             partes[5],
                             partes[6],
@@ -256,30 +264,41 @@ public class App extends Application {
                             partes[8],
                             partes[9]
                     );
+
                     if (partes.length >= 11) {
                         String notasComEnter = partes[10].replace("[QUEBRA]", "\n");
                         t.setAnotacoes(notasComEnter);
                     }
+
                     dados.add(t);
                 }
             }
+
         } catch (java.io.IOException | java.time.format.DateTimeParseException | NumberFormatException e) {
             System.err.println("Erro ao carregar arquivo: " + e.getMessage());
         }
     }
 
     private void salvarNoArquivo(javafx.collections.ObservableList<Tarefa> lista) {
-        java.io.File arquivo = new java.io.File("processos_salvos.txt");
+
+        String caminho = System.getProperty("user.home")
+                + java.io.File.separator
+                + "SistemaDeTarefas"
+                + java.io.File.separator
+                + "processos_salvos.txt";
+
+        java.io.File arquivo = new java.io.File(caminho);
+
         try {
-            if (!arquivo.exists()) {
-                arquivo.createNewFile();
-            }
+            // cria pasta se não existir
+            arquivo.getParentFile().mkdirs();
 
             try (java.io.PrintWriter writer = new java.io.PrintWriter(new java.io.FileWriter(arquivo))) {
-                for (Tarefa t: lista) {
+                for (Tarefa t : lista) {
                     writer.println(t.toLinhaTexto());
                 }
             }
+
         } catch (java.io.IOException e) {
             System.err.println("Erro ao salvar o arquivo: " + e.getMessage());
         }
