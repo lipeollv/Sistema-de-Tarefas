@@ -29,7 +29,7 @@ jobs:
       working-directory: src/SistemaDeTarefasFX
 
     - name: Gerar Pacote Nativo com jpackage
-      run: jpackage --type ${{ matrix.os == 'windows-latest' && 'exe' || 'dmg' }} --input src/SistemaDeTarefasFX/target --main-jar SistemaDeTarefasFX-1.0-SNAPSHOT.jar --name SistemaDeTarefas --vendor "Filipe" --dest output
+      run: jpackage --type ${{ matrix.os == 'windows-latest' && 'exe' || 'dmg' }} --input src/SistemaDeTarefasFX/target --main-jar SistemaDeTarefasFX-1.0-SNAPSHOT.jar --main-class sistema.de.tarefas.Launcher --name SistemaDeTarefas --vendor "Filipe" --dest output 
         
     - name: Fazer Upload do Artefato
       uses: actions/upload-artifact@v4
