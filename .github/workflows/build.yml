@@ -29,23 +29,13 @@ jobs:
         run: mvn clean package
         working-directory: src/SistemaDeTarefasFX
 
+      # 🔥 JLINK CORRIGIDO (SEM QUEBRA DE LINHA)
       - name: Criar runtime com jlink
-        run: |
-          jlink \
-          --add-modules java.base,java.desktop \
-          --output runtime
+        run: jlink --add-modules java.base,java.desktop --output runtime
 
+      # 🔥 JPACKAGE
       - name: Gerar app com jpackage
-        run: |
-          jpackage \
-          --type ${{ matrix.os == 'windows-latest' && 'exe' || 'dmg' }} \
-          --input src/SistemaDeTarefasFX/target \
-          --main-jar SistemaDeTarefasFX-1.0-SNAPSHOT.jar \
-          --main-class sistema.de.tarefas.Launcher \
-          --runtime-image runtime \
-          --name SistemaDeTarefas \
-          --vendor "Filipe" \
-          --dest output
+        run: jpackage --type ${{ matrix.os == 'windows-latest' && 'exe' || 'dmg' }} --input src/SistemaDeTarefasFX/target --main-jar SistemaDeTarefasFX-1.0-SNAPSHOT.jar --main-class sistema.de.tarefas.Launcher --runtime-image runtime --name SistemaDeTarefas --vendor "Filipe" --dest output
 
       - name: Upload artefato
         uses: actions/upload-artifact@v4
