@@ -20,11 +20,11 @@ jobs:
           distribution: 'temurin'
 
       - name: Build Maven
+        working-directory: src/SistemaDeTarefasFX
         run: mvn clean package
 
-        working-directory: src/SistemaDeTarefasFX
-
       - name: Criar runtime com jlink
+        shell: cmd
         run: |
           jlink ^
             --module-path "%JAVA_HOME%\jmods;src\SistemaDeTarefasFX\target\dependency" ^
@@ -32,6 +32,7 @@ jobs:
             --output runtime
 
       - name: Criar .exe com jpackage
+        shell: cmd
         run: |
           jpackage ^
             --input src\SistemaDeTarefasFX\target ^
