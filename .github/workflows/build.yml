@@ -1,4 +1,4 @@
-name: Build simples (sem jlink)
+name: Build com runtime completo
 
 on:
   push:
@@ -21,13 +21,22 @@ jobs:
 
       - name: Build Maven
         working-directory: src/SistemaDeTarefasFX
-        run: mvn clean package
+        run: mvn clean package dependency:copy-dependencies
 
-      - name: Copiar dependências
-        working-directory: src/SistemaDeTarefasFX
-        run: mvn dependency:copy-dependencies
+      - name: Baixar JavaFX SDK
+        run: |
+          curl -L -o javafx.zip https://download2.gluonhq.com/openjfx/17.0.10/openjfx-17.0.10_windows-x64_bin-sdk.zip
+          tar -xf javafx.zip
 
-      - name: Criar .exe (sem jlink)
+      - name: Criar runtime com jlink
+        shell: cmd
+        run: |
+          jlink ^
+          --module-path "%JAVA_HOME%\jmods;openjfx-17.0.10_windows-x64_bin-sdk\javafx-sdk-17.0.10\lib" ^
+          --add-modules java.base,javafx.controls,javafx.fxml ^
+          --output runtime
+
+      - name: Criar .exe
         shell: cmd
         run: |
           jpackage ^
@@ -35,6 +44,7 @@ jobs:
           --name SistemaDeTarefas ^
           --main-jar SistemaDeTarefasFX-1.0-SNAPSHOT.jar ^
           --main-class sistema.de.tarefas.Launcher ^
+          --runtime-image runtime ^
           --type exe ^
           --dest output
 
