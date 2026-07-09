@@ -1,4 +1,4 @@
-name: Build com jlink (Executável real)
+name: Build simples (sem jlink)
 
 on:
   push:
@@ -23,27 +23,22 @@ jobs:
         working-directory: src/SistemaDeTarefasFX
         run: mvn clean package
 
-      - name: Criar runtime com jlink
-        shell: cmd
-        run: |
-          jlink ^
-            --module-path "%JAVA_HOME%\jmods;src\SistemaDeTarefasFX\target\dependency" ^
-            --add-modules java.base,javafx.controls,javafx.fxml ^
-            --output runtime
+      - name: Copiar dependências
+        working-directory: src/SistemaDeTarefasFX
+        run: mvn dependency:copy-dependencies
 
-      - name: Criar .exe com jpackage
+      - name: Criar .exe (sem jlink)
         shell: cmd
         run: |
           jpackage ^
-            --input src\SistemaDeTarefasFX\target ^
-            --name SistemaDeTarefas ^
-            --main-jar SistemaDeTarefasFX-1.0-SNAPSHOT.jar ^
-            --main-class sistema.de.tarefas.Launcher ^
-            --runtime-image runtime ^
-            --type exe ^
-            --dest output
+          --input src\SistemaDeTarefasFX\target ^
+          --name SistemaDeTarefas ^
+          --main-jar SistemaDeTarefasFX-1.0-SNAPSHOT.jar ^
+          --main-class sistema.de.tarefas.Launcher ^
+          --type exe ^
+          --dest output
 
-      - name: Upload artefato
+      - name: Upload
         uses: actions/upload-artifact@v4
         with:
           name: app-windows
