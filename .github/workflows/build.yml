@@ -46,7 +46,7 @@ jobs:
           echo JAVAFX_PATH=%JAVAFX_PATH%
           jlink ^
           --module-path "%JAVA_HOME%\jmods;%JAVAFX_PATH%" ^
-          --add-modules java.base,javafx.controls,javafx.fxml ^
+          --add-modules java.base,javafx.controls,javafx.fxml,javafx.graphics ^
           --output runtime
 
       - name: Criar .exe
