@@ -1,4 +1,4 @@
-name: Build com runtime completo
+name: Build com JavaFX embutido (final corrigido)
 
 on:
   push:
@@ -19,20 +19,33 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Build Maven
+      - name: Build Maven + dependências
         working-directory: src/SistemaDeTarefasFX
         run: mvn clean package dependency:copy-dependencies
 
-      - name: Baixar JavaFX SDK
+      # ✅ AGORA COM DIR (pra confirmar estrutura)
+      - name: Baixar e extrair JavaFX
+        shell: cmd
         run: |
           curl -L -o javafx.zip https://download2.gluonhq.com/openjfx/17.0.10/openjfx-17.0.10_windows-x64_bin-sdk.zip
           tar -xf javafx.zip
+          echo ===== LISTAGEM APÓS EXTRAÇÃO =====
+          dir
 
-      - name: Criar runtime com jlink
+      # ✅ DETECÇÃO AUTOMÁTICA (não depende do nome exato)
+      - name: Detectar caminho do JavaFX
         shell: cmd
         run: |
+          for /d %%i in (javafx-sdk-*) do (
+            echo JAVAFX_PATH=%%i\lib>>%GITHUB_ENV%
+          )
+
+      - name: Criar runtime (jlink)
+        shell: cmd
+        run: |
+          echo JAVAFX_PATH=%JAVAFX_PATH%
           jlink ^
-          --module-path "%JAVA_HOME%\jmods;openjfx-17.0.10_windows-x64_bin-sdk\javafx-sdk-17.0.10\lib" ^
+          --module-path "%JAVA_HOME%\jmods;%JAVAFX_PATH%" ^
           --add-modules java.base,javafx.controls,javafx.fxml ^
           --output runtime
 
@@ -48,7 +61,7 @@ jobs:
           --type exe ^
           --dest output
 
-      - name: Upload
+      - name: Upload artefato
         uses: actions/upload-artifact@v4
         with:
           name: app-windows
