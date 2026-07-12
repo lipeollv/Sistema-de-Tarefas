@@ -182,10 +182,15 @@ public class App extends Application {
         painelPrincipal.setLeft(arvore);
         painelPrincipal.setCenter(camadaCentro);
 
-        var scene = new Scene(painelPrincipal, 900, 600);
-
+        Scene scene = new Scene(painelPrincipal);
         stage.setScene(scene);
+
         stage.show();
+
+        javafx.application.Platform.runLater(() -> {
+            stage.setWidth(900);
+            stage.setHeight(600);
+        });
     }
 
     public static void main(String[] args) {
