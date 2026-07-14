@@ -6,7 +6,7 @@
 
 ##  Origem do Ideia
 
-Antes esse processo era um gerenciador de tarefas que eu faria para uso próprio, para conseguir manter uma rotina boa com um programa feito do meu jeito com todas as melhorias que eu fosse querer, elas iriam acontecer.  
+Antes esse projeto era um gerenciador de tarefas que eu faria para uso próprio, para conseguir manter uma rotina boa com um programa feito do meu jeito com todas as melhorias que eu fosse querer, elas iriam acontecer.  
 
 Porém o projeto ficou um tempo parado por conta da faculdade e quando começou as férias, minha namorada estava precisando de uma planilha para organizar e ajudar ela com os clientes. Quanto mais tempo vai passando, mais cliente você vai conseguindo, acaba que fica difícil de organizar tudo e pode virar uma bagunça. 
 
