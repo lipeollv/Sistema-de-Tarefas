@@ -32,11 +32,11 @@ Fiz um programa simples (com mudanças futuras), com arquitetura de arvore para 
 
 ---
 
-## 🛠️ Tecnologias e Desenvolvimento
+##  Tecnologias e Desenvolvimento
 
 Um projeto feito inteiramente com **Java** e **Javafx**. Com ajuda de i.a para entendimento e evolução do projeto, porém escrito completamente por mim e feito com a ideia principal: **acessibilidade para o usuário**.
 
-## 📬 Contato
+##  Contato
 
 Se quiser trocar uma ideia sobre o projeto ou se conectar profissionalmente:
 
